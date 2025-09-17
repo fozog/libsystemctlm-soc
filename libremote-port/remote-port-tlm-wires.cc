@@ -178,7 +178,7 @@ void remoteport_tlm_wires::tie_off(void)
 		if (wires_in[i].size())
 			continue;
 
-		sprintf(n_str, "tie_off_%s_wires_in_%d", wire_name, i);
+		snprintf(n_str, sizeof(n_str), "tie_off_%s_wires_in_%d", wire_name, i);
 		sig = new sc_signal<bool>(n_str);
 		wires_in[i](*sig);
 	}
@@ -187,7 +187,7 @@ void remoteport_tlm_wires::tie_off(void)
 		if (wires_out[i].size())
 			continue;
 
-		sprintf(n_str, "tie_off_%s_wires_out_%d", wire_name, i);
+		snprintf(n_str, sizeof(n_str), "tie_off_%s_wires_out_%d", wire_name, i);
 		sig = new sc_signal<bool>(n_str);
 		wires_out[i](*sig);
 	}

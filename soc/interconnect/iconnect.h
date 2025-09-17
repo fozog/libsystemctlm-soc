@@ -95,7 +95,7 @@ iconnect<N_INITIATORS, N_TARGETS>::iconnect (sc_module_name name)
 	unsigned int i;
 
 	for (i = 0; i < N_INITIATORS; i++) {
-		sprintf(txt, "target_socket_%d", i);
+		snprintf(txt, sizeof(txt), "target_socket_%d", i);
 
 		set_target_offset(i, 0);
 
@@ -108,7 +108,7 @@ iconnect<N_INITIATORS, N_TARGETS>::iconnect (sc_module_name name)
 	}
 
 	for (i = 0; i < N_TARGETS; i++) {
-		sprintf(txt, "init_socket_%d", i);
+		snprintf(txt, sizeof(txt), "init_socket_%d", i);
 		i_sk[i] = new tlm_utils::simple_initiator_socket_tagged<iconnect>(txt);
 
 		i_sk[i]->register_invalidate_direct_mem_ptr(this,

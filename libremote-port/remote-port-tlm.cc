@@ -146,7 +146,7 @@ protected:
 private:
 	sc_time time_start;
 	async_event event;
-	pthread_t thread;
+	[[maybe_unused]]pthread_t thread;
 };
 
 class remoteport_tlm_sync_loosely_timed : public remoteport_tlm_sync_untimed
@@ -462,7 +462,7 @@ void remoteport_tlm::rp_say_hello(void)
 		CAP_WIRE_POSTED_UPDATES,
 		CAP_ATS,
 	};
-	struct rp_pkt_hello pkt = {0};
+	struct rp_pkt_hello pkt = {{0}};
 	size_t len;
 
 	len = rp_encode_hello_caps(rp_pkt_id++, 0,

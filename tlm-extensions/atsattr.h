@@ -74,7 +74,7 @@ public:
 	}
 
 private:
-	bool phys_addr;
+	[[maybe_unused]] bool phys_addr;
 	uint64_t attributes;
 	uint64_t length;
 	uint32_t result;
