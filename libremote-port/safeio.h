@@ -26,6 +26,15 @@
 #ifndef _SAFEIO_H_
 #define _SAFEIO_H_
 
+#ifdef __APPLE__
+#include <unistd.h>
+typedef off_t off64_t;
+static inline off64_t lseek64(int fd, off64_t offset, int whence)
+{
+        return lseek(fd, offset, whence);
+}
+#endif
+
 ssize_t rp_safe_read(int fd, void *buf, size_t count);
 ssize_t rp_safe_write(int fd, const void *buf, size_t count);
 ssize_t rp_safe_copyfd(int s, off64_t off, size_t len, int d);

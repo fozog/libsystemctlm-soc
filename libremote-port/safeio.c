@@ -33,6 +33,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#include "safeio.h"
+
 #define D(x)
 
 #if !defined(SPLICE_F_MOVE) && defined(__NR_splice)
@@ -89,7 +91,7 @@ rp_safe_write(int fd, const void *wbuf, size_t count)
 }
 
 /* Try to splice if possible.  */
-int rp_safe_copyfd(int s, off64_t off, size_t olen, int d)
+ssize_t rp_safe_copyfd(int s, off64_t off, size_t olen, int d)
 {
 	static unsigned char buf[16 * 1024];
 	int len = olen;
